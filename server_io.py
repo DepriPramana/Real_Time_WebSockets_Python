@@ -23,6 +23,8 @@ async def handle(websocket, path):
         # Keep connection alive to receive updates
         async for message in websocket:
             pass
+    except websockets.exceptions.ConnectionClosedError:
+        print("Client connection closed unexpectedly")
     finally:
         connections.remove(websocket)  # Remove WebSocket connection from the list
         print("Client disconnected")
